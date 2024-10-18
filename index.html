@@ -68,13 +68,19 @@
     </audio>
 
     <script>
+        let audioPlayed = false; // Variabile per tracciare se il suono è già stato riprodotto
+
         function startTimer() {
-            let audio = document.getElementById('horror-sound');
-            
-            // Avvia il suono e gestisci eventuali errori di riproduzione
-            audio.play().catch(function(error) {
-                console.error("Errore nella riproduzione dell'audio: ", error);
-            });
+            if (!audioPlayed) {  // Controlla se il suono è già stato riprodotto
+                let audio = document.getElementById('horror-sound');
+                
+                // Avvia il suono e gestisci eventuali errori di riproduzione
+                audio.play().catch(function(error) {
+                    console.error("Errore nella riproduzione dell'audio: ", error);
+                });
+                
+                audioPlayed = true;  // Imposta la variabile a true dopo la riproduzione
+            }
 
             let storedDays = localStorage.getItem('daysLeft');
             
